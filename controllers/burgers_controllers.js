@@ -14,6 +14,10 @@ router.get("/", function (req, res) {
 });
 
 router.post("/api/burgers/", function (req, res) {
+
+    if (req.body.burger_name === "") {
+        return console.log("Invalid name");
+    }
     burger.insertOne("burger_name", req.body.burger_name, function (result) {
         res.json({ id: result.insertId });
     });
